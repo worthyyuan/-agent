@@ -1,0 +1,9 @@
+# 运行时依赖
+fastapi
+uvicorn[standard]
+langgraph
+langchain-openai
+pydantic>=2
+python-dotenv
+sqlalchemy  # pyproject 漏了，db.py 用；容器全新环境必须显式声明
+chromadb

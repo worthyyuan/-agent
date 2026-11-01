@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.git/
+.env          # API key 不进镜像，run 时用 --env-file 注入
+review.db     # 运行时数据，靠 volume 挂载持久化，不进镜像
+chroma_db/    # 向量库运行时数据，靠 volume 挂载持久化，不进镜像
+tests/
+sample_code.py
+sample.diff
+client.py
+_test_*.py
+_verify_*.py
+.dockerignore

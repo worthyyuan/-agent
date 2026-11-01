@@ -1,0 +1,17 @@
+services:
+  code-review-agent:
+    # 构建镜像：用当前目录下的 Dockerfile 打包
+    build: .
+    # 容器名称（固定名，方便 docker logs / docker exec 直接定位）
+   
+    container_name: code-review-agent 
+    # 端口映射：宿主机 8000 -> 容器内 8000（uvicorn 监听端口）
+    ports:
+      - "8000:8000"
+    # 环境变量文件：启动时把 .env 里的 API 密钥等注入容器
+    env_file:
+      - .env
+
+    # 挂载 SQLite 数据库文件，让容器重启后审核记录不丢失
+    volumes:
+      - ./review.db:/app/review.db

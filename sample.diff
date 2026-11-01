@@ -1,0 +1,32 @@
+diff --git a/app.py b/app.py
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/app.py
+@@ -0,0 +1,15 @@
++import sqlite3
++import pickle
++
++DB_PATH = "shop.db"
++API_KEY = "sk-1a2b3c4d5e6f7g8h9i0j"
++
++def login(username, password):
++    conn = sqlite3.connect(DB_PATH)
++    cur = conn.cursor()
++    sql = "SELECT * FROM users WHERE username = '" + username + "' AND password = '" + password + "'"
++    cur.execute(sql)
++    return cur.fetchone()
++
++def load(data):
++    return pickle.loads(data)
+diff --git a/process.py b/process.py
+index 1234567..89abcde 100644
+--- a/process.py
++++ b/process.py
+@@ -1,5 +1,5 @@
+ def calculate_average(nums):
+     total = 0
+-    for i in range(len(nums)):
++    for i in range(len(nums) + 1):
+         total += nums[i]
+     return total / len(nums)

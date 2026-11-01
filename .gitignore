@@ -1,0 +1,16 @@
+# 环境变量文件：存放 DEEPSEEK_API_KEY / SILICONFLOW_API_KEY 等密钥，绝不能提交到版本库
+.env
+# Python 解释器生成的字节码缓存目录
+__pycache__/
+# 编译后的 .pyc 字节码文件
+*.pyc
+# 本地虚拟环境目录（依赖都装在本地，不入库）
+.venv/
+venv/
+# pytest 的测试缓存目录
+.pytest_cache/
+
+# SQLite 数据库文件（运行时生成，不入库）
+review.db
+# Chroma 向量库持久化目录（运行时生成，不入库）
+chroma_db/

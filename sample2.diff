@@ -1,0 +1,32 @@
+diff --git a/user_auth.py b/user_auth.py
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/user_auth.py
+@@ -0,0 +1,16 @@
++import sqlite3
++import pickle
++
++DB_FILE = "users.db"
++SECRET_TOKEN = "9f8e7d6c5b4a3210fedcba"
++
++def authenticate(user_name, passwd):
++    connection = sqlite3.connect(DB_FILE)
++    cursor = connection.cursor()
++    query = "SELECT * FROM accounts WHERE user_name = '" + user_name + "' AND passwd = '" + passwd + "'"
++    cursor.execute(query)
++    return cursor.fetchone()
++
++def deserialize(data):
++    return pickle.loads(data)
+diff --git a/stats.py b/stats.py
+new file mode 100644
+index 0000000..e69de29
+--- /dev/null
++++ b/stats.py
+@@ -0,0 +1,6 @@
++def compute_mean(values):
++    total = 0
++    for i in range(len(values) + 1):
++        total += values[i]
++    return total / len(values)

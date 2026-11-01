@@ -1,0 +1,29 @@
+# 构建系统：用 hatchling 作为后端（负责把 app 打成 wheel/安装包）
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# 项目元数据与依赖声明（pip install -e . 或打包时使用）
+[project]
+name = "code-review-agent"
+version = "0.1.0"
+description = "多 Agent 代码审核平台：输入 git diff，多 Agent 并行审查，输出结构化报告"
+requires-python = ">=3.10"
+# 运行时依赖；注意：容器实际安装走 requirements.txt（含 sqlalchemy/chromadb），此处声明不全
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "langgraph",
+    "langchain-openai",
+    "pydantic>=2",
+    "python-dotenv",
+    "pytest",
+]
+
+# 告诉 hatchling 打包哪些包：只打 app 目录
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+# pytest 配置：把项目根目录加入 sys.path，这样 import app.xxx 能直接找到
+[tool.pytest.ini_options]
+pythonpath = ["."]
